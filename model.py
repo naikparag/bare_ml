@@ -21,6 +21,7 @@ class Model():
         layers = self.__layers
         dimen = input_dimen
         for layer in layers:
+            print("MODEL ^^^^^^^^^^ ///  compiling layers ")
             layer.compile(dimen)
             dimen = layer.get_dimen()
 

@@ -2,25 +2,22 @@ import numpy as np
 np.set_printoptions(precision=3)
 
 class Layer:
-    def __init__(self, dimen, **kwargs):
-
-        allowed_kwargs = {'name',
-                          'weights',
-                          'biases'
-                          }
-        for kwarg in kwargs:
-            if kwarg not in allowed_kwargs:
-                raise TypeError('Keyword argument not understood:', kwarg)
+    def __init__(self, dimen, name=None, weights=None, biases=None):
 
         self.dimen = dimen
-        self.__name = kwargs['name']
+        self.__name = name
+        self.__weights = weights
+        self.__biases = biases
 
-        
+
     def compile(self, input_dimen):
 
         # init weights & biases
-        self.__weights = np.random.rand(input_dimen, self.dimen)
-        self.__biases = np.random.rand(self.dimen)
+        if self.__weights is None:
+            print("Updating weights from none ---")
+            self.__weights = np.random.rand(input_dimen, self.dimen)
+        if self.__biases is None:
+            self.__biases = np.random.rand(self.dimen)
 
 
     @property

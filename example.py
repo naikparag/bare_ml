@@ -5,11 +5,12 @@ import numpy as np
 
 inputs = np.array([[0, 1]])
 
-weights = np.array([0.01, 0.02])
-biases = np.array([0.1, 0.1])
+weights = np.array([[0.1, 0.1, 0.1, 0.1], [0.2, 0.2, 0.2, 0.2]])
+biases = np.array([[0.1, 0.1, 0.1, 0.1]])
+weights2 = np.array([[0.1, 0.1, 0.1, 0.1], [0.2, 0.2, 0.2, 0.2], [0.4, 0.4, 0.4, 0.4], [0.5, 0.5, 0.5, 0.5]])
 
 dense = layer.Dense(4, name="dense", weights=weights, biases=biases)
-dense2 = layer.Dense(4, name="dense2", weights=weights, biases=biases)
+dense2 = layer.Dense(4, name="dense2", weights=weights2, biases=biases)
 
 model = model.Model(name="my model")
 model.add(dense)
