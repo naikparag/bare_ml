@@ -1,4 +1,6 @@
 from layer import Layer
+from loss import MeanSquaredError
+import numpy as np
 
 class Model():
     def __init__(self, name=None):
@@ -25,10 +27,11 @@ class Model():
             layer.compile(dimen)
             dimen = layer.get_dimen()
 
-    def fit(self, x=None, y=None, epochs=1):
+    def fit(self, x, y, epochs=1):
 
         layer_input = x
         layers = self.__layers
+        result = np.empty
         for epoch in range(epochs):
             print("\n\n----- ## ----- //// EPOCH: ", str(epoch + 1))
             for idx, layer in enumerate(layers):
@@ -36,3 +39,10 @@ class Model():
                     layer_input = x
                 result = layer.forward(layer_input)
                 layer_input = result
+
+            loss = self.calc_loss(y, result)
+            print("\n ----- LOSS: ", loss)
+
+
+    def calc_loss(self, y, y_pred):
+        return MeanSquaredError.calc(y, y_pred)
