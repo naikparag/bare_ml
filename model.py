@@ -49,7 +49,7 @@ class Model():
                 layer_input = result
 
             loss = self.calc_loss(y, result)
-            logger.v_silent(verbose, '\n -- LOSS: ', loss)
+            logger.v_silent(verbose, '\n -- MODEL LOSS: ', loss)
 
 
     def calc_loss(self, y, y_pred):

@@ -39,7 +39,7 @@ class Layer:
 
     def print_info(self):
         logger.v_detail(self.verbose, 'Layer : ', self.name)
-        logger.v_detail(self.verbose, '\n-- weights:')
+        logger.v_detail(self.verbose, '\n-- weights:', self)
         logger.v_detail(self.verbose, self.weights)
         logger.v_detail(self.verbose, '\n-- biases: ')
         logger.v_detail(self.verbose, self.biases)
@@ -54,7 +54,7 @@ class Dense(Layer):
 
         self.print_info()
         forward_result = input.dot(self.weights) + self.biases
-        logger.debug("\n-- RESULTS: ")
-        print(forward_result)
+        logger.v_detail(self.verbose, '\n-- Layer Result: ', self.name)
+        logger.v_detail(self.verbose, forward_result)
 
         return forward_result
