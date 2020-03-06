@@ -1,6 +1,8 @@
 import numpy as np
 np.set_printoptions(precision=3)
 
+import logger
+
 class Layer:
     def __init__(self, dimen, name=None, weights=None, biases=None):
 
@@ -36,13 +38,11 @@ class Layer:
         return self.dimen
 
     def print_info(self):
-        print("Layer : ", self.name)
-        # print("\n -- input:")
-        # print(input)
-        print("\n-- weights:")
-        print(self.weights)
-        print("\n-- biases: ")
-        print(self.biases)
+        logger.debug("Layer : ", self.name)
+        logger.debug("\n-- weights:")
+        logger.debug(self.weights)
+        logger.debug("\n-- biases: ")
+        logger.debug(self.biases)
 
     def forward(self, input):
         # no impl
@@ -54,7 +54,7 @@ class Dense(Layer):
 
         self.print_info()
         forward_result = input.dot(self.weights) + self.biases
-        print("\n-- RESULTS: ")
+        logger.debug("\n-- RESULTS: ")
         print(forward_result)
 
         return forward_result
