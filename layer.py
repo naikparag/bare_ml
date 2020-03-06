@@ -4,19 +4,19 @@ np.set_printoptions(precision=3)
 import logger
 
 class Layer:
-    def __init__(self, dimen, name=None, weights=None, biases=None):
+    def __init__(self, dimen, name=None, weights=None, biases=None, verbose=1):
 
         self.dimen = dimen
         self.__name = name
         self.__weights = weights
         self.__biases = biases
+        self.verbose = verbose
 
 
     def compile(self, input_dimen):
 
         # init weights & biases
         if self.__weights is None:
-            print("Updating weights from none ---")
             self.__weights = np.random.rand(input_dimen, self.dimen)
         if self.__biases is None:
             self.__biases = np.random.rand(self.dimen)
@@ -38,11 +38,11 @@ class Layer:
         return self.dimen
 
     def print_info(self):
-        logger.debug("Layer : ", self.name)
-        logger.debug("\n-- weights:")
-        logger.debug(self.weights)
-        logger.debug("\n-- biases: ")
-        logger.debug(self.biases)
+        logger.v_detail(self.verbose, 'Layer : ', self.name)
+        logger.v_detail(self.verbose, '\n-- weights:')
+        logger.v_detail(self.verbose, self.weights)
+        logger.v_detail(self.verbose, '\n-- biases: ')
+        logger.v_detail(self.verbose, self.biases)
 
     def forward(self, input):
         # no impl
