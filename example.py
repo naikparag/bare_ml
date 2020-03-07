@@ -1,7 +1,8 @@
-import layer
-import model
 import numpy as np
 import random
+
+import layer
+import model
 
 # ----- example 1
 inputs = np.array([[0, 1]])
@@ -35,6 +36,7 @@ def gen_xor(count):
     y = np.apply_along_axis(xor, 1, x)
     return np.array(x), np.array(y)
 
+
 x, y = gen_xor(100)
 xor_weights = np.array([[0.1, 0.1, 0.1, 0.1], [0.1, 0.1, 0.1, 0.1]])
 xor_weights2 = np.array([[0.2], [0.2], [0.2], [0.2]])
@@ -50,6 +52,3 @@ model.add(dense3)
 model.add(dense4)
 model.compile(2)
 model.fit(x=x, y=y, epochs=1)
-
-
-
