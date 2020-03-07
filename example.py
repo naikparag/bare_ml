@@ -1,3 +1,4 @@
+import bare_ml
 import numpy as np
 import random
 
@@ -28,6 +29,12 @@ biases3 = np.array([[0.1]])
 
 # ---- example 2 XOR
 
+bare_ml.manual_seed(2)
+bare_ml.print_precision(3)
+
+np.random.seed(1)
+random.seed(1)
+
 
 def gen_xor(count):
     xor_seed = [[0, 0], [0, 1], [1, 0], [1, 1]]
@@ -37,18 +44,18 @@ def gen_xor(count):
     return np.array(x), np.array(y)
 
 
-x, y = gen_xor(100)
+x, y = gen_xor(10)
 xor_weights = np.array([[0.1, 0.1, 0.1, 0.1], [0.1, 0.1, 0.1, 0.1]])
 xor_weights2 = np.array([[0.2], [0.2], [0.2], [0.2]])
-dense1 = layer.Dense(4, name="dense1", weights=np.full((2, 4), 0.1), verbose=1)
-dense2 = layer.Dense(4, name="dense2", weights=np.full((4, 4), 0.1), verbose=1)
-dense3 = layer.Dense(4, name="dense3", weights=np.full((4, 4), 0.1), verbose=1)
-dense4 = layer.Dense(1, name="dense4", weights=np.full((4, 1), 0.1), verbose=1)
+dense1 = layer.Dense(4, name="dense1", verbose=2)
+dense2 = layer.Dense(4, name="dense2", weights=np.full((4, 4), 0.1), verbose=2)
+# dense3 = layer.Dense(4, name="dense3", weights=np.full((4, 4), 0.1), verbose=1)
+dense4 = layer.Dense(1, name="dense4", weights=np.full((4, 1), 0.1), verbose=2)
 
 model = model.Model(name="xor_model")
 model.add(dense1)
 model.add(dense2)
-model.add(dense3)
+# model.add(dense3)
 model.add(dense4)
 model.compile(2)
 model.fit(x=x, y=y, epochs=1)
